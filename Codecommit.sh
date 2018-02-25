@@ -7,17 +7,24 @@ ACESS_KEY="EXAMPLE"
 OS_CHECK=$(grep debian /etc/os-release)
 
 check () {
+cat << EOF
+###############################################################################
+Checking system Compatibility
+###############################################################################
+EOF
+sleep 2
 if [ "$OS_CHECK" ]; then
+#aws_cli_install
 ssh_key_conf
 git_install
 else
 cat << EOF
 ###############################################################################
-The system that you are running this script on at the moement is not currently supported
+The system that you are running this script on at the moement is not currently 
+supported
 ###############################################################################
 EOF
 fi
-
 }
 
 
@@ -76,5 +83,5 @@ to get started with the VCS system AWS codecommit
 ##################################################
 EOF
 sleep 2
+check
 
-#aws_cli_install
