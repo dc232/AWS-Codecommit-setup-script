@@ -4,6 +4,22 @@
 ###########################
 PYTHON_VERSION="2.7.10"
 ACESS_KEY="EXAMPLE"
+OS_CHECK=$(grep debian /etc/os-release)
+
+check () {
+if [ "$OS_CHECK" ]; then
+ssh_key_conf
+git_install
+else
+cat << EOF
+###############################################################################
+The system that you are running this script on at the moement is not currently supported
+###############################################################################
+EOF
+fi
+
+}
+
 
 aws_cli_install () {
 sudo apt update
@@ -62,5 +78,3 @@ EOF
 sleep 2
 
 #aws_cli_install
-ssh_key_conf
-git_install
